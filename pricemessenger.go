@@ -8,7 +8,7 @@ import (
 	"io"
 	"io/ioutil"
 	"os"
-	"time"
+	//"time"
 )
 
 type Inputs struct {
@@ -98,13 +98,15 @@ func main() {
 
 		fmt.Printf("signature of price message: %x\n\n", signature[:])
 
-		//fmt.Printf("echo -n '%s' | factom-cli put -e %x -c %s %s\n", outsMarshalled, signature[:], ins.ChainID, ins.PayingKeyName)
+		fmt.Printf("echo -n '%s' | factom-cli put -e %x -c %s %s\n", outsMarshalled, signature[:], ins.ChainID, ins.PayingKeyName)
 		//factom-cli might put ASCII encoded text in the signature field instead of the binary signature.  Might need to use curl API instead.
 
 		//fmt.Printf("curl -i -X POST -H 'Content-Type: application/json' -d '{\"ChainID\":\"%s\", \"ExtIDs\":[\"%x\"], \"Content\":\"48656C6C6F20466163746F6D21\"}' localhost:8089/v1/compose-entry-submit/zeros",  ins.ChainID, signature[:])
 
 		//curl -i -X POST -H 'Content-Type: application/json' -d '{"ChainID":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", "ExtIDs":["4b007494cb7d985cf18f651d7ce50d88390f83846c46ae3c01b543c73c828bd7734dbcb7aa583cfb080e1421c255b471bf8660d995e43a16a44de8306e083001"], "Content":"48656C6C6F20466163746F6D21"}' localhost:8089/v1/compose-entry-submit/zeros | python -c "import json,sys;[line for line in sys.stdin]; obj=json.loads(line); print obj['EntryCommit']['CommitEntryMsg'];"
 
+                
+                /*
 		t := time.Now()
 		timestring := t.Format("2006-01-02-15-04-05")
 		filename := fmt.Sprintf("outprice-%s.sh", timestring)
@@ -137,6 +139,8 @@ then`)
                 outfile.WriteString("curl -i -X POST -H 'Content-Type: application/json' -d '$commitData' localhost:8088/v1/commit-entry\n")
 
 		outfile.WriteString("fi\n")
+                
+                */
 
 	}
 
